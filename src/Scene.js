@@ -8,36 +8,18 @@ import { Background2 } from './components/Background2'
 import { GlobalContext } from './context/GlobalContext'
 
 export const Scene = () => {
-    const {alicePlaybackRate, setAlicePlaybackRate, setOtherPlaybackRate} = useContext(GlobalContext);
+    const {alicePlaybackRate, setAlicePlaybackRate} = useContext(GlobalContext);
 
     const handleClick = () => {
       setAlicePlaybackRate(alicePlaybackRate*1.1);
-      //console.log("alicePlaybackRate: ", alicePlaybackRate);
-
     };
   
-    const adjustBackgroundPlayback = ()=>{
-        if(alicePlaybackRate < 0.8){
-            setOtherPlaybackRate(alicePlaybackRate/2 * -1);
-        }
-        else if(alicePlaybackRate > 1.2){
-            setOtherPlaybackRate(alicePlaybackRate/2);
-        }
-        else{
-            setOtherPlaybackRate(0);
-        }
-    };
-
-    useEffect(adjustBackgroundPlayback,[]);
-
     // make alice slowdown aftersome time
     const reversePlayback = () => {
   
         if (alicePlaybackRate > 0.4){
             setAlicePlaybackRate(alicePlaybackRate*0.8);
-          //console.log("reversePlayback:.... ", alicePlaybackRate);
         }
-        adjustBackgroundPlayback();
       };
     
       useEffect(() => {
